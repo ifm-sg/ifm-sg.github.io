@@ -7,7 +7,7 @@ var ajaxCall = (key, url, messages, temperature) => {
       data: JSON.stringify({
         model: "gpt-3.5-turbo-instruct",
         messages: messages,
-        max_tokens: 4096,
+        max_tokens: 3500,
         n: 1,
         temperature: temperature,
       }),
