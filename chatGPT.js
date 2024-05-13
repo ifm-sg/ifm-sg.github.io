@@ -40,7 +40,7 @@ const url = "https://api.openai.com/v1";
     `;
   class MainWebComponent extends HTMLElement {
     async post(apiKey, endpoint, messages, temperature) {
-      const items = messages.split(";").trim();
+      const items = messages.split(";");
       // Parse message strings into an array of message objects
       const parsedMessages = items.map(item => {
       const [role, content] = item.split(",");
