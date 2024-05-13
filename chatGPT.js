@@ -43,7 +43,7 @@ const url = "https://api.openai.com/v1";
       const { response } = await ajaxCall(
         apiKey,
         `${url}/${endpoint}`,
-        prompt,
+        messages,
         temperature
       );
       //console.log(response.choices[0].text);
