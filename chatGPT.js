@@ -1,4 +1,4 @@
-var ajaxCall = (key, url, messages, temperature) => {
+var ajaxCall = (key, url, parsedMessages, temperature) => {
   return new Promise((resolve, reject) => {
     $.ajax({
       url: url,
@@ -6,7 +6,7 @@ var ajaxCall = (key, url, messages, temperature) => {
       dataType: "json",
       data: JSON.stringify({
         model: "gpt-3.5-turbo-instruct",
-        messages: messages,
+        messages: parsedMessages,
         max_tokens: 3500,
         n: 1,
         temperature: temperature,
@@ -40,10 +40,20 @@ const url = "https://api.openai.com/v1";
     `;
   class MainWebComponent extends HTMLElement {
     async post(apiKey, endpoint, messages, temperature) {
+      // Parse message strings into an array of message objects
+      const parsedMessages = messages.map(message => {
+      const [role, content] = message.split(",");
+      const roleValue = role.split(":")[1].trim();
+      const contentValue = content.split(":")[1].trim();
+      return {
+        role: roleValue,
+        content: contentValue
+      };
+    });
       const { response } = await ajaxCall(
         apiKey,
         `${url}/${endpoint}`,
-        messages,
+        parsedMessages,
         temperature
       );
       //console.log(response.choices[0].text);
