@@ -8,7 +8,6 @@ var ajaxCall = (key, url, parsedMessages, temperature) => {
         model: "gpt-3.5-turbo-instruct",
         messages: parsedMessages,
         max_tokens: 3500,
-        n: 1,
         temperature: temperature,
       }),
       headers: {
@@ -57,8 +56,8 @@ const url = "https://api.openai.com/v1";
         parsedMessages,
         temperature
       );
-      //console.log(response.choices[0].text);
-      return response.choices[0].text;
+      console.log(response.choices);
+      return response.choices[0].message.content;
     }
   }
   customElements.define("custom-widget", MainWebComponent);
