@@ -39,17 +39,8 @@ const url = "https://api.openai.com/v1";
     `;
   class MainWebComponent extends HTMLElement {
     async post(apiKey, endpoint, messages, temperature) {
-      const items = messages.split(";");
-      // Parse message strings into an array of message objects
-      const parsedMessages = items.map(item => {
-      const [role, content] = item.split(",");
-      const roleValue = role.split(":")[1].trim();
-      const contentValue = content.split(":")[1].trim();
-      return {
-        role: roleValue,
-        content: contentValue
-      };
-    });
+      // Ensure messages is properly formatted JSON string
+      const parsedMessages = JSON.parse(messages);
       const { response } = await ajaxCall(
         apiKey,
         `${url}/${endpoint}`,
