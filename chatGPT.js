@@ -5,7 +5,7 @@ var ajaxCall = (key, url, parsedMessages, temperature) => {
       type: "POST",
       dataType: "json",
       data: JSON.stringify({
-        model: "gpt-3.5-turbo-instruct",
+        model: "gpt-3.5-turbo",
         messages: parsedMessages,
         max_tokens: 3500,
         temperature: temperature,
