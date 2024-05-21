@@ -1,4 +1,4 @@
-var ajaxCall = (key, url, parsedMessages, temperature) => {
+var ajaxCall = (key, url, input) => {
   return new Promise((resolve, reject) => {
     $.ajax({
       url: url,
