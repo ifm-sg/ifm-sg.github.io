@@ -1,7 +1,7 @@
 var ajaxCall = (key, values) => {
   return new Promise((resolve, reject) => {
     $.ajax({
-      url: 'https://sample-movies-9lkj2gj.svc.aped-4627-b74a.pinecone.io',
+      url: 'https://sample-movies-9lkj2gj.svc.aped-4627-b74a.pinecone.io/query',
       type: "POST",
       dataType: "json",
       data: JSON.stringify({
