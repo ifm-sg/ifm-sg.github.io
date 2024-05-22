@@ -34,9 +34,9 @@ var ajaxCall = (key, input) => {
       </div>
     `;
   class MainWebComponent extends HTMLElement {
-    async getEmbeddings(apiKey, input) {
+    async getEmbeddings(key, input) {
       const { emb } = await ajaxCall(
-        apiKey,
+        key,
         input
       );
       console.log(emb.data);
