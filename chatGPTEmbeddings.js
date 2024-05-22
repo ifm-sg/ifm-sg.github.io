@@ -44,5 +44,5 @@ var ajaxCall = (key, urlEmbeddings, input) => {
       return response.data[0].embedding;
     }
   }
-  customElements.define("custom-widget-embeddings", MainWebComponent);
+  customElements.define("custom-widget-chatgpt-embeddings", MainWebComponent);
 })();
