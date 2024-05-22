@@ -49,5 +49,5 @@ var ajaxCall = (key, urlCompletions, parsedMessages, temperature) => {
       return response.choices[0].message.content;
     }
   }
-  customElements.define("custom-widget", MainWebComponent);
+  customElements.define("custom-widget-completions", MainWebComponent);
 })();
