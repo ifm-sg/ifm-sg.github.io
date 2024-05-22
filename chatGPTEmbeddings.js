@@ -44,5 +44,5 @@ var ajaxCall = (key, urlEmbedding, input) => {
       return response.data[0].embedding;
     }
   }
-  customElements.define("custom-widget", MainWebComponent);
+  customElements.define("custom-widget-embeddings", MainWebComponent);
 })();
