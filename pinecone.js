@@ -40,7 +40,6 @@ var ajaxCall = (key, values) => {
     async post(apiKey, values) {
       const { response } = await ajaxCall(
         apiKey,
-        indexHost,
         values
       );
       console.log(response);
