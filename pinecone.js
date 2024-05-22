@@ -1,14 +1,14 @@
-var ajaxCall = (key, indexHost, values) => {
+var ajaxCall = (key, values) => {
   return new Promise((resolve, reject) => {
     $.ajax({
-      url: 'https://${indexHost}/query',
+      url: 'https://sample-movies-9lkj2gj.svc.aped-4627-b74a.pinecone.io',
       type: "POST",
       dataType: "json",
       data: JSON.stringify({
         vector: values,
         filter: {"genre": {"$eq": "documentary"}},
         topK: 1,
-        includeValues: false;
+        includeValues: false,
         includeMetadata: true
       }),
       headers: {
@@ -37,7 +37,7 @@ var ajaxCall = (key, indexHost, values) => {
       </div>
     `;
   class MainWebComponent extends HTMLElement {
-    async post(apiKey, indexHost, values) {
+    async post(apiKey, values) {
       const { response } = await ajaxCall(
         apiKey,
         indexHost,
