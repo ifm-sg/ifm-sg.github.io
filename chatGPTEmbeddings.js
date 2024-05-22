@@ -1,7 +1,7 @@
-var ajaxCall = (key, url, input) => {
+var ajaxCall = (key, urlEmbedding, input) => {
   return new Promise((resolve, reject) => {
     $.ajax({
-      url: url,
+      url: urlEmbedding,
       type: "POST",
       dataType: "json",
       data: JSON.stringify({
@@ -25,8 +25,6 @@ var ajaxCall = (key, url, input) => {
   });
 };
 
-const url = "https://api.openai.com/v1";
-
 (function () {
   const template = document.createElement("template");
   template.innerHTML = `
@@ -39,7 +37,7 @@ const url = "https://api.openai.com/v1";
     async post(apiKey, endpoint, input) {
       const { response } = await ajaxCall(
         apiKey,
-        `${url}/${endpoint}`,
+        `https://api.openai.com/v1/${endpoint}`,
         input
       );
       console.log(response.choices);
