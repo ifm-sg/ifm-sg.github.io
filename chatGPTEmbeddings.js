@@ -1,7 +1,7 @@
-var ajaxCall = (key, urlEmbeddings, input) => {
+var ajaxCall = (key, input) => {
   return new Promise((resolve, reject) => {
     $.ajax({
-      url: urlEmbeddings,
+      url: "https://api.openai.com/v1/embeddings",
       type: "POST",
       dataType: "json",
       data: JSON.stringify({
@@ -34,10 +34,9 @@ var ajaxCall = (key, urlEmbeddings, input) => {
       </div>
     `;
   class MainWebComponent extends HTMLElement {
-    async post(apiKey, endpoint, input) {
+    async post(apiKey, input) {
       const { response } = await ajaxCall(
         apiKey,
-        `https://api.openai.com/v1/${endpoint}`,
         input
       );
       console.log(response.data);
