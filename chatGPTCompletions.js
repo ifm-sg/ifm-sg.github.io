@@ -1,4 +1,4 @@
-var ajaxCall = (key, prompt) => {
+var ajaxCall = (apiKey, prompt) => {
   return new Promise((resolve, reject) => {
     $.ajax({
       url: "https://api.openai.com/v1/completions",
@@ -13,7 +13,7 @@ var ajaxCall = (key, prompt) => {
       }),
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${key}`,
+        Authorization: `Bearer ${apiKey}`,
       },
       crossDomain: true,
       success: function (response, status, xhr) {
