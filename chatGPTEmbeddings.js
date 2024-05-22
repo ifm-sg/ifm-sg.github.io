@@ -1,7 +1,7 @@
-var ajaxCall = (key, urlEmbedding, input) => {
+var ajaxCall = (key, urlEmbeddings, input) => {
   return new Promise((resolve, reject) => {
     $.ajax({
-      url: urlEmbedding,
+      url: urlEmbeddings,
       type: "POST",
       dataType: "json",
       data: JSON.stringify({
