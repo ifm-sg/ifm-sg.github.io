@@ -1,7 +1,7 @@
-var ajaxCall = (key, urlCompletions, parsedMessages, temperature) => {
+var ajaxCall = (key, parsedMessages, temperature) => {
   return new Promise((resolve, reject) => {
     $.ajax({
-      url: urlCompletions,
+      url:  "https://api.openai.com/v1/chat/completions",
       type: "POST",
       dataType: "json",
       data: JSON.stringify({
@@ -36,12 +36,11 @@ var ajaxCall = (key, urlCompletions, parsedMessages, temperature) => {
       </div>
     `;
   class MainWebComponent extends HTMLElement {
-    async post(apiKey, endpoint, messages, temperature) {
+    async post(apiKey, messages, temperature) {
       // Ensure messages is properly formatted JSON string
       const parsedMessages = JSON.parse(messages);
       const { response } = await ajaxCall(
         apiKey,
-        `https://api.openai.com/v1/${endpoint}`,
         parsedMessages,
         temperature
       );
