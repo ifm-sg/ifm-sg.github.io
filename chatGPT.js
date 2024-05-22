@@ -1,7 +1,7 @@
-var ajaxCall = (key, url, parsedMessages, temperature) => {
+var ajaxCall = (key, urlCompletions, parsedMessages, temperature) => {
   return new Promise((resolve, reject) => {
     $.ajax({
-      url: url,
+      url: urlCompletions,
       type: "POST",
       dataType: "json",
       data: JSON.stringify({
@@ -26,7 +26,6 @@ var ajaxCall = (key, url, parsedMessages, temperature) => {
   });
 };
 
-const url = "https://api.openai.com/v1";
 
 (function () {
   const template = document.createElement("template");
@@ -42,7 +41,7 @@ const url = "https://api.openai.com/v1";
       const parsedMessages = JSON.parse(messages);
       const { response } = await ajaxCall(
         apiKey,
-        `${url}/${endpoint}`,
+        `https://api.openai.com/v1/${endpoint}`,
         parsedMessages,
         temperature
       );
