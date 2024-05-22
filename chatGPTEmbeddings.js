@@ -40,7 +40,7 @@ var ajaxCall = (key, urlEmbeddings, input) => {
         `https://api.openai.com/v1/${endpoint}`,
         input
       );
-      console.log(response.choices);
+      console.log(response.data);
       return response.data[0].embedding;
     }
   }
