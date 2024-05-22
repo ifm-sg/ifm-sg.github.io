@@ -35,12 +35,12 @@ var ajaxCall = (key, input) => {
     `;
   class MainWebComponent extends HTMLElement {
     async getEmbeddings(apiKey, input) {
-      const { response } = await ajaxCall(
+      const { emb } = await ajaxCall(
         apiKey,
         input
       );
-      console.log(response.data);
-      return response.data[0].embedding;
+      console.log(emb.data);
+      return emb.data[0].embedding;
     }
   }
   customElements.define("custom-widget-chatgpt-embeddings", MainWebComponent);
