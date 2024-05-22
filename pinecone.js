@@ -47,5 +47,5 @@ var ajaxCall = (key, values) => {
       return response.matches.metadata.text;
     }
   }
-  customElements.define("custom-widget-chatgpt-completions", MainWebComponent);
+  customElements.define("custom-widget-pinecone", MainWebComponent);
 })();
