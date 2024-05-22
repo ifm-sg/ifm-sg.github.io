@@ -8,7 +8,8 @@ var ajaxCall = (key, indexHost, values) => {
         vector: values,
         filter: {"genre": {"$eq": "documentary"}},
         topK: 1,
-        includeValues: true
+        includeValues: false;
+        includeMetadata: true
       }),
       headers: {
         "Content-Type": "application/json",
@@ -42,8 +43,8 @@ var ajaxCall = (key, indexHost, values) => {
         indexHost,
         values
       );
-      //console.log(response.choices[0].text);
-      return response.choices[0].text;
+      console.log(response);
+      return response.matches.metadata.text;
     }
   }
   customElements.define("custom-widget-chatgpt-completions", MainWebComponent);
