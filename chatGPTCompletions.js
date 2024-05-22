@@ -1,7 +1,7 @@
-var ajaxCall = (key, urlCompletions, prompt) => {
+var ajaxCall = (key, prompt) => {
   return new Promise((resolve, reject) => {
     $.ajax({
-      url: urlCompletions,
+      url: "https://api.openai.com/v1/completions",
       type: "POST",
       dataType: "json",
       data: JSON.stringify({
@@ -37,10 +37,9 @@ var ajaxCall = (key, urlCompletions, prompt) => {
       </div>
     `;
   class MainWebComponent extends HTMLElement {
-    async post(apiKey, endpoint, prompt) {
+    async post(apiKey, prompt) {
       const { response } = await ajaxCall(
         apiKey,
-        `https://api.openai.com/v1/${endpoint}`,
         prompt
       );
       //console.log(response.choices[0].text);
