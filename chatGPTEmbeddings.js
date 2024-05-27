@@ -1,5 +1,5 @@
 // Function to make an AJAX call to the OpenAI API
-var ajaxCall = (key, input) => {
+var embeddingAjaxCall = (key, input) => {
   return new Promise((resolve, reject) => {
     $.ajax({
       url: "https://api.openai.com/v1/embeddings",
@@ -29,8 +29,8 @@ var ajaxCall = (key, input) => {
 // Immediately Invoked Function Expression (IIFE) to define the custom element
 (function () {
   // Create a template for the custom element
-  const templateEmb = document.createElement("template");
-  templateEmb.innerHTML = `
+  const embeddingTemplate = document.createElement("template-emb");
+  embeddingTemplate.innerHTML = `
       <style>
       </style>
       <div id="root" style="width: 100%; height: 100%;">
@@ -42,7 +42,7 @@ var ajaxCall = (key, input) => {
       // Attach a shadow DOM tree to this instance of the custom element
       this.attachShadow({ mode: 'open' });
       // Clone the template content and append it to the shadow DOM
-      this.shadowRoot.appendChild(templateEmb.content.cloneNode(true));
+      this.shadowRoot.appendChild(embeddingTemplate.content.cloneNode(true));
     }
 
     // Method to fetch embeddings from the OpenAI API
@@ -53,7 +53,7 @@ var ajaxCall = (key, input) => {
           throw new Error('API key and input are required.');
         }
          // Make the API call
-        const { emb } = await ajaxCall(key, input);
+        const { emb } = await embeddingAjaxCall(key, input);
         console.log(emb.data);
         // Return the embedding
         return emb.data[0].embedding;
