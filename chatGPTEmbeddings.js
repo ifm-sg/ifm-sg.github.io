@@ -26,22 +26,23 @@ var ajaxCall = (key, input) => {
 };
 
 (function () {
-  const template = document.createElement("template-emb");
+  const template = document.createElement("template");
   template.innerHTML = `
       <style>
       </style>
       <div id="root" style="width: 100%; height: 100%;">
       </div>
     `;
-  class MainWebComponent extends HTMLElement {
+  class EmbeddingWebComponent extends HTMLElement {
     async getEmbeddings(key, input) {
-      const { emb } = await ajaxCall(
-        key,
-        input
-      );
-      console.log(emb.data);
-      return emb.data[0].embedding;
+      try{
+        const { emb } = await ajaxCall(key, input);
+        console.log(emb.data);
+        return emb.data[0].embedding;
+      } catch(error) {
+        console.error('Error fetching embeddings:', error)
+      }
     }
   }
-  customElements.define("custom-widget-chatgpt-embeddings", MainWebComponent);
+  customElements.define("custom-widget-chatgpt-embeddings", EmbeddingWebComponent);
 })();
