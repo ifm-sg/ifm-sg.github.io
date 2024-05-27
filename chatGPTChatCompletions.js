@@ -56,7 +56,6 @@ var ajaxCall = (key, parsedMessages, temperature) => {
           if (typeof temperature !== 'number' || temperature < 0 || temperature > 2) {
             throw new Error('Temperature must be a number between 0 and 2.');
           }
-        console.log(messages);
         // Make the API call
         const { response } = await ajaxCall(apiKey, parsedMessages, temperature);
         console.log(response.choices);
