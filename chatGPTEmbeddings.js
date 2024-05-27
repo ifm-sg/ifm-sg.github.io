@@ -29,7 +29,7 @@ var embeddingAjaxCall = (key, input) => {
 // Immediately Invoked Function Expression (IIFE) to define the custom element
 (function () {
   // Create a template for the custom element
-  const embeddingTemplate = document.createElement("template-emb");
+  const embeddingTemplate = document.createElement("template");
   embeddingTemplate.innerHTML = `
       <style>
       </style>
