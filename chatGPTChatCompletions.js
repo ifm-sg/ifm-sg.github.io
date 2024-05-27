@@ -1,3 +1,4 @@
+// Function to make an AJAX call to the OpenAI API
 var ajaxCall = (key, parsedMessages, temperature) => {
   return new Promise((resolve, reject) => {
     $.ajax({
@@ -26,27 +27,37 @@ var ajaxCall = (key, parsedMessages, temperature) => {
   });
 };
 
-
+// Immediately Invoked Function Expression (IIFE) to define the custom element
 (function () {
-  const template_cc = document.createElement("template");
-  template_cc.innerHTML = `
+  // Create a template for the custom element
+  const templateCC = document.createElement("template");
+  templateCC.innerHTML = `
       <style>
       </style>
       <div id="root" style="width: 100%; height: 100%;">
       </div>
     `;
+  // Define the custom element class
   class ChatCompletionWebComponent extends HTMLElement {
+    // Method to make a POST request to the OpenAI API
     async post(apiKey, messages, temperature) {
-      // Ensure messages is properly formatted JSON string
-      const parsedMessages = JSON.parse(messages);
-      const { response } = await ajaxCall(
-        apiKey,
-        parsedMessages,
-        temperature
-      );
-      console.log(response.choices);
-      return response.choices[0].message.content;
+      try{
+        // Ensure messages is properly formatted JSON string
+        const parsedMessages = JSON.parse(messages);
+         // Validate temperature (should be a number within a sensible range)
+          if (typeof temperature !== 'number' || temperature < 0 || temperature > 2) {
+            throw new Error('Temperature must be a number between 0 and 2.');
+          }
+        // Make the API call
+        const { response } = await ajaxCall(apiKey, parsedMessages, temperature);
+        console.log(response.choices);
+        // Return the first message content
+        return response.choices[0].message.content;
+      } catch (error) {
+        console.error('Error in post method:', error);
+      }
     }
   }
+   // Define the custom element with a unique name
   customElements.define("custom-widget-chatgpt-chat-completions", ChatCompletionWebComponent);
 })();
