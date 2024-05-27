@@ -26,8 +26,8 @@ var ajaxCall = (key, input) => {
 };
 
 (function () {
-  const template = document.createElement("template");
-  template.innerHTML = `
+  const template_emb = document.createElement("template");
+  template_emb.innerHTML = `
       <style>
       </style>
       <div id="root" style="width: 100%; height: 100%;">
