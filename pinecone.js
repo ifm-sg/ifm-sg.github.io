@@ -46,7 +46,7 @@ var pineconeAjaxCall = (key, values) => {
     }
     async post(apiKey, values) {
       // Validate inputs
-      if (!apiKey || !Array.isArray(values) || values.length === 0)) {
+      if (!apiKey || !Array.isArray(values) || values.length === 0) {
         throw new Error('API key and non-empty values array are required.');
       }
       try {
