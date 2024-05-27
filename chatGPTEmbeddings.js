@@ -53,9 +53,11 @@ var embeddingAjaxCall = (key, input) => {
           throw new Error('API key and input are required.');
         }
          // Make the API call
-        const { emb } = await embeddingAjaxCall(key, input);
+        const { response } = await embeddingAjaxCall(key, input);
+         // Log the entire response for debugging purposes
+        console.log(response);
         // Return the embedding
-        return emb.data[0].embedding;
+        return response.data[0].embedding;
       } catch(error) {
         console.error('Error fetching embeddings:', error)
         throw error;  // Re-throw the error after logging it
