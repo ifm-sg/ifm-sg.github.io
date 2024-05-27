@@ -1,5 +1,5 @@
 // Function to make an AJAX call to the OpenAI API
-var ajaxCall = (key, parsedMessages, temperature) => {
+var chatCompletionAjaxCall = (key, parsedMessages, temperature) => {
   return new Promise((resolve, reject) => {
     $.ajax({
       url:  "https://api.openai.com/v1/chat/completions",
@@ -30,7 +30,7 @@ var ajaxCall = (key, parsedMessages, temperature) => {
 // Immediately Invoked Function Expression (IIFE) to define the custom element
 (function () {
   // Create a template for the custom element
-  const templateCC = document.createElement("template");
+  const chatCompletionTemplate = document.createElement("template");
   templateCC.innerHTML = `
       <style>
       </style>
@@ -45,7 +45,7 @@ var ajaxCall = (key, parsedMessages, temperature) => {
       // Attach a shadow DOM tree to this instance of the custom element
       this.attachShadow({ mode: 'open' });  
       // Clone the template content and append it to the shadow DOM
-      this.shadowRoot.appendChild(templateCC.content.cloneNode(true));
+      this.shadowRoot.appendChild(chatCompletionTemplate.content.cloneNode(true));
     }
     // Method to make a POST request to the OpenAI API
     async post(apiKey, messages, temperature) {
@@ -57,7 +57,7 @@ var ajaxCall = (key, parsedMessages, temperature) => {
             throw new Error('Temperature must be a number between 0 and 2.');
           }
         // Make the API call
-        const { response } = await ajaxCall(apiKey, parsedMessages, temperature);
+        const { response } = await chatCompletionAjaxCall(apiKey, parsedMessages, temperature);
         console.log(response.choices);
         // Return the first message content
         return response.choices[0].message.content;
