@@ -31,7 +31,7 @@ var pineconeAjaxCall = (key, values) => {
 
 (function () {
   const pineconeTemplate = document.createElement("template");
-  pineConeTemplate.innerHTML = `
+  pineconeTemplate.innerHTML = `
       <style>
       </style>
       <div id="root" style="width: 100%; height: 100%;">
@@ -46,10 +46,12 @@ var pineconeAjaxCall = (key, values) => {
     }
     async post(apiKey, values) {
       // Validate inputs
-      if (!apiKey || !Array.isArray(values) || values.length === 0) {
+      if (!apiKey || !values) {
         throw new Error('API key and non-empty values array are required.');
       }
+      let vector;
       try {
+        vector = JSON.parse(values);
         const { response } = await pineconeAjaxCall(apiKey, values);
         console.log(response);
         return response.matches.metadata.text;
