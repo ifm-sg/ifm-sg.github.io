@@ -31,7 +31,7 @@ var chatCompletionAjaxCall = (key, parsedMessages, temperature) => {
 (function () {
   // Create a template for the custom element
   const chatCompletionTemplate = document.createElement("template");
-  templateCC.innerHTML = `
+  chatCompletionTemplate.innerHTML = `
       <style>
       </style>
       <div id="root" style="width: 100%; height: 100%;">
