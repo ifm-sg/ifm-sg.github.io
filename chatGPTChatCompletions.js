@@ -37,6 +37,13 @@ var ajaxCall = (key, parsedMessages, temperature) => {
       <div id="root" style="width: 100%; height: 100%;">
       </div>
     `;
+  constructor() {
+    super();
+    // Attach a shadow DOM tree to this instance of the custom element
+    this.attachShadow({ mode: 'open' });  
+    // Clone the template content and append it to the shadow DOM
+    this.shadowRoot.appendChild(templateCC.content.cloneNode(true));
+  }
   // Define the custom element class
   class ChatCompletionWebComponent extends HTMLElement {
     // Method to make a POST request to the OpenAI API
