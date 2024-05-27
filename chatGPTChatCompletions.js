@@ -28,14 +28,14 @@ var ajaxCall = (key, parsedMessages, temperature) => {
 
 
 (function () {
-  const template = document.createElement("template");
-  template.innerHTML = `
+  const template_cc = document.createElement("template");
+  template_cc.innerHTML = `
       <style>
       </style>
       <div id="root" style="width: 100%; height: 100%;">
       </div>
     `;
-  class MainWebComponent extends HTMLElement {
+  class ChatCompletionWebComponent extends HTMLElement {
     async post(apiKey, messages, temperature) {
       // Ensure messages is properly formatted JSON string
       const parsedMessages = JSON.parse(messages);
@@ -48,5 +48,5 @@ var ajaxCall = (key, parsedMessages, temperature) => {
       return response.choices[0].message.content;
     }
   }
-  customElements.define("custom-widget-chatgpt-chat-completions", MainWebComponent);
+  customElements.define("custom-widget-chatgpt-chat-completions", ChatCompletionWebComponent);
 })();
