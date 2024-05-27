@@ -54,7 +54,6 @@ var embeddingAjaxCall = (key, input) => {
         }
          // Make the API call
         const { emb } = await embeddingAjaxCall(key, input);
-        console.log(emb.data);
         // Return the embedding
         return emb.data[0].embedding;
       } catch(error) {
