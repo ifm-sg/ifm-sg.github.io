@@ -1,12 +1,12 @@
 // Function to make an AJAX call to the Pinecone API
-var pineconeAjaxCall = (key, values) => {
+var pineconeAjaxCall = (key, indexHost, vector) => {
   return new Promise((resolve, reject) => {
     $.ajax({
-      url: 'https://sample-movies-9lkj2gj.svc.aped-4627-b74a.pinecone.io/query',
+      url: 'https://${indexHost}/query',
       type: "POST",
       dataType: "json",
       data: JSON.stringify({
-        vector: values,
+        vector: vector,
         filter: {"genre": {"$eq": "documentary"}},
         topK: 1,
         includeValues: false,
@@ -44,13 +44,13 @@ var pineconeAjaxCall = (key, values) => {
       this.attachShadow({ mode: 'open' });
       this.shadowRoot.appendChild(pineconeTemplate.content.cloneNode(true));
     }
-    async post(apiKey, values) {
+    async post(apiKey, indexHost, vector) {
       // Validate inputs
-      if (!apiKey || !Array.isArray(values) || values.length === 0) {
+      if (!apiKey || !Array.isArray(vector) || vector.length === 0) {
         throw new Error('API key and non-empty values array are required.');
       }
       try {
-        const { response } = await pineconeAjaxCall(apiKey, values);
+        const { response } = await pineconeAjaxCall(apiKey, indexHost, vector);
         console.log(response);
         return response.matches.metadata.text;
       } catch (error) {
