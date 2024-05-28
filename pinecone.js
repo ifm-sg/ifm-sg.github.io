@@ -52,7 +52,7 @@ var pineconeAjaxCall = (key, indexHost, vector) => {
       try {
         const { response } = await pineconeAjaxCall(apiKey, indexHost, vector);
         console.log(response);
-        return response.matches[0].metadata.text;
+        return response.matches[0].metadata;
       } catch (error) {
         console.error('Error in post method:', error);
         throw error;
