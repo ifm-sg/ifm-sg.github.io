@@ -7,7 +7,7 @@ var pineconeAjaxCall = (key, indexHost, vector) => {
       dataType: "json",
       data: JSON.stringify({
         vector: vector,
-        filter: {"genre": {"$eq": "documentary"}},
+        //filter: {"genre": {"$eq": "documentary"}},
         topK: 1,
         includeValues: false,
         includeMetadata: true
