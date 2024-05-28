@@ -2,7 +2,7 @@
 var pineconeAjaxCall = (key, indexHost, vector) => {
   return new Promise((resolve, reject) => {
     $.ajax({
-      url: 'https://${indexHost}/query',
+      url: `https://${indexHost}/query`,
       type: "POST",
       dataType: "json",
       data: JSON.stringify({
