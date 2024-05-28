@@ -46,8 +46,8 @@ var pineconeAjaxCall = (key, indexHost, vector) => {
     }
     async post(apiKey, indexHost, vector) {
       // Validate inputs
-      if (!apiKey || !Array.isArray(vector) || vector.length === 0) {
-        throw new Error('API key and non-empty values array are required.');
+      if (!apiKey || !indexHost || !Array.isArray(vector) || vector.length === 0) {
+        throw new Error('API key, index host and non-empty vector array are required.');
       }
       try {
         const { response } = await pineconeAjaxCall(apiKey, indexHost, vector);
