@@ -52,9 +52,9 @@ var pineconeAjaxCall = (key, indexHost, vector) => {
       try {
         const { response } = await pineconeAjaxCall(apiKey, indexHost, vector);
         console.log(response);
-        var content = ""
-        for (i = 0; i < response.matches.length; i++) {
-          content = content + " Option " + str(i) + ": " response.matches[i].metadata.text + ";";
+        let content = "";
+        for (let i = 0; i < response.matches.length; i++) {
+          content += ` Option ${i}: ${response.matches[i].metadata.text};`;
         }
         return content;
       } catch (error) {
