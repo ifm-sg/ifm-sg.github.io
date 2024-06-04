@@ -1,12 +1,12 @@
 // Function to make an AJAX call to the Pinecone API
-var pineconeAjaxCall = (key, indexHost, vector, countryFilter, yearFilter) => {
+var pineconeAjaxCall = (key, indexHost, embedding, countryFilter, yearFilter) => {
   return new Promise((resolve, reject) => {
     $.ajax({
       url: `${indexHost}/query`,
       type: "POST",
       dataType: "json",
       data: JSON.stringify({
-        vector: vector,
+        vector: embedding,
         filter: {"country": {"$in": countryFilter},
                 "year": {"$in": yearFilter}},
         topK: 5,
@@ -45,16 +45,16 @@ var pineconeAjaxCall = (key, indexHost, vector, countryFilter, yearFilter) => {
       this.attachShadow({ mode: 'open' });
       this.shadowRoot.appendChild(pineconeTemplate.content.cloneNode(true));
     }
-    async post(apiKey, indexHost, vector, countryFilter, yearFilter) {
+    async post(apiKey, indexHost, embedding, countries, years) {
+      let countryFilter = JSON.stringify(countries);
+      let yearFilter = JSON.stringify(years);
+      console.log(countryFilter);
       // Validate inputs
-      if ( !Array.isArray(countryFilter)) {
-        throw new Error('country filter is not an array');
-      }
-      if (!apiKey || !indexHost || !Array.isArray(vector) || vector.length === 0 || !Array.isArray(countryFilter) || countryFilter.length === 0 || !Array.isArray(yearFilter) || yearFilter.length === 0) {
-        throw new Error('API key, index host, non-empty vector / country filter / year filter array are required.');
+      if (!apiKey || !indexHost || !Array.isArray(embedding) || embedding.length === 0 || !Array.isArray(countryFilter) || countryFilter.length === 0 || !Array.isArray(yearFilter) || yearFilter.length === 0) {
+        throw new Error('API key, index host, non-empty embedding / country filter / year filter array are required.');
       }
       try {
-        const { response } = await pineconeAjaxCall(apiKey, indexHost, vector, countryFilter, yearFilter);
+        const { response } = await pineconeAjaxCall(apiKey, indexHost, embedding, countryFilter, yearFilter);
         console.log(response);
         let responseArray = [];
         let content = "";
