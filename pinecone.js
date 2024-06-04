@@ -59,9 +59,9 @@ var pineconeAjaxCall = (key, indexHost, embedding, countryFilter, yearFilter) =>
           content += ` Option ${i}: ${response.matches[i].metadata.text};`;
         }
         responseArray.push(content);
-        let ids = "";
-        for (let i = 0; i < response.matches.length; i++) {
-          ids += `${response.matches[i].id},`;
+        let ids = `${response.matches[0].id}`;
+        for (let i = 1; i < response.matches.length; i++) {
+          ids += `,${response.matches[i].id}`;
         }
         responseArray.push(ids);
         return responseArray;
