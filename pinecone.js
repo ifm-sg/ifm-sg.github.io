@@ -8,7 +8,7 @@ var pineconeAjaxCall = (key, indexHost, embedding, countryFilter, yearFilter) =>
       data: JSON.stringify({
         vector: embedding,
         filter: {"country": {"$in": ["Germany"]},
-                "year": {"$in": ["2014", "2016"]}},
+                "year": {"$in": [2014, 2016]}},
         topK: 5,
         includeValues: false,
         includeMetadata: true
