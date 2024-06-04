@@ -48,11 +48,10 @@ var pineconeAjaxCall = (key, indexHost, embedding, countryFilter, yearFilter) =>
     async post(apiKey, indexHost, embedding, countries, years) {
       let countryFilter = JSON.stringify(countries);
       let yearFilter = JSON.stringify(years);
-      console.log(countryFilter);
       // Validate inputs
-      if (!apiKey || !indexHost || !Array.isArray(embedding) || embedding.length === 0 || !Array.isArray(countryFilter) || countryFilter.length === 0 || !Array.isArray(yearFilter) || yearFilter.length === 0) {
-        throw new Error('API key, index host, non-empty embedding / country filter / year filter array are required.');
-      }
+     // if (!apiKey || !indexHost || !Array.isArray(embedding) || embedding.length === 0 || !Array.isArray(countryFilter) || countryFilter.length === 0 || !Array.isArray(yearFilter) || yearFilter.length === 0) {
+      //  throw new Error('API key, index host, non-empty embedding / country filter / year filter array are required.');
+      //}
       try {
         const { response } = await pineconeAjaxCall(apiKey, indexHost, embedding, countryFilter, yearFilter);
         console.log(response);
