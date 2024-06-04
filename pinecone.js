@@ -47,9 +47,12 @@ var pineconeAjaxCall = (key, indexHost, vector, countryFilter, yearFilter) => {
     }
     async post(apiKey, indexHost, vector, countryFilter, yearFilter) {
       // Validate inputs
-      //if (!apiKey || !indexHost || !Array.isArray(vector) || vector.length === 0 || !Array.isArray(countryFilter) || countryFilter.length === 0 || !Array.isArray(yearFilter) || yearFilter.length === 0) {
-      //  throw new Error('API key, index host, non-empty vector / country filter / year filter array are required.');
-      //}
+      if ( !Array.isArray(countryFilter)) {
+        throw new Error('country filter is not an array');
+      }
+      if (!apiKey || !indexHost || !Array.isArray(vector) || vector.length === 0 || !Array.isArray(countryFilter) || countryFilter.length === 0 || !Array.isArray(yearFilter) || yearFilter.length === 0) {
+        throw new Error('API key, index host, non-empty vector / country filter / year filter array are required.');
+      }
       try {
         const { response } = await pineconeAjaxCall(apiKey, indexHost, vector, countryFilter, yearFilter);
         console.log(response);
