@@ -7,8 +7,8 @@ var pineconeAjaxCall = (key, indexHost, embedding, countryFilter, yearFilter) =>
       dataType: "json",
       data: JSON.stringify({
         vector: embedding,
-        filter: {"country": {"$in": ["Germany"]},
-                "year": {"$in": [2014, 2016]}},
+        filter: {"country": {"$in": countryFilter},
+                "year": {"$in": yearFilter}},
         topK: 5,
         includeValues: false,
         includeMetadata: true
@@ -45,9 +45,7 @@ var pineconeAjaxCall = (key, indexHost, embedding, countryFilter, yearFilter) =>
       this.attachShadow({ mode: 'open' });
       this.shadowRoot.appendChild(pineconeTemplate.content.cloneNode(true));
     }
-    async post(apiKey, indexHost, embedding, countries, years) {
-      let countryFilter = JSON.stringify(countries);
-      let yearFilter = JSON.stringify(years);
+    async post(apiKey, indexHost, embedding, countryFilter, yearFilter) {
       // Validate inputs
      // if (!apiKey || !indexHost || !Array.isArray(embedding) || embedding.length === 0 || !Array.isArray(countryFilter) || countryFilter.length === 0 || !Array.isArray(yearFilter) || yearFilter.length === 0) {
       //  throw new Error('API key, index host, non-empty embedding / country filter / year filter array are required.');
