@@ -59,7 +59,7 @@ var pineconeAjaxCall = (key, indexHost, embedding, countryFilter, yearFilter) =>
         let content = "";
         
         response.matches.forEach((match, index) => {
-          content += ` Option ${index}: ${match.metadata.text};`;
+          content += ` Option ${index+1}: ${match.metadata.text};`;
         });
         responseArray.push(content);
         
