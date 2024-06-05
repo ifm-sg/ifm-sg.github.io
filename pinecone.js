@@ -45,26 +45,29 @@ var pineconeAjaxCall = (key, indexHost, embedding, countryFilter, yearFilter) =>
       this.attachShadow({ mode: 'open' });
       this.shadowRoot.appendChild(pineconeTemplate.content.cloneNode(true));
     }
+    
     async post(apiKey, indexHost, embedding, countryFilter, yearFilter) {
       // Validate inputs
       if (!apiKey || !indexHost || !Array.isArray(embedding) || embedding.length === 0 || !Array.isArray(countryFilter) || countryFilter.length === 0 || !Array.isArray(yearFilter) || yearFilter.length === 0) {
-        throw new Error('API key, index host, non-empty embedding / country filter / year filter array are required.');
+      throw new Error('API key, index host, and non-empty embedding, country filter, and year filter arrays are required.');
       }
+      
       try {
         const { response } = await pineconeAjaxCall(apiKey, indexHost, embedding, countryFilter, yearFilter);
         console.log(response);
-        let responseArray = [];
+        const responseArray = [];
         let content = "";
-        for (let i = 0; i < response.matches.length; i++) {
-          content += ` Option ${i}: ${response.matches[i].metadata.text};`;
-        }
+        
+        response.matches.forEach((match, index) => {
+          content += ` Option ${index}: ${match.metadata.text};`;
+        });
         responseArray.push(content);
-        let ids = `${response.matches[0].id}`;
-        for (let i = 1; i < response.matches.length; i++) {
-          ids += `,${response.matches[i].id}`;
-        }
+        
+        const ids = response.matches.map(match => match.id).join(',');
         responseArray.push(ids);
+        
         return responseArray;
+        
       } catch (error) {
         console.error('Error in post method:', error);
         throw error;
